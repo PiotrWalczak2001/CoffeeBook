@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AD5D1B00-BD2F-4AC1-BE0F-CEA0DF03BEDD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D46748D9-6D96-44B2-AAC4-228372951B74}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{3B6F41BF-ECB5-4B46-B966-3EAB2802F232}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeBook.Persistence", "CoffeeBook.Persistence\CoffeeBook.Persistence.csproj", "{2A71DB56-C3AF-4F37-92B5-51CE6E2F122E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeBook.App", "CoffeeBook.App\CoffeeBook.App.csproj", "{59C300A1-280B-4A3A-94C5-0FCE3EE0725D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A71DB56-C3AF-4F37-92B5-51CE6E2F122E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A71DB56-C3AF-4F37-92B5-51CE6E2F122E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A71DB56-C3AF-4F37-92B5-51CE6E2F122E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A71DB56-C3AF-4F37-92B5-51CE6E2F122E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59C300A1-280B-4A3A-94C5-0FCE3EE0725D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59C300A1-280B-4A3A-94C5-0FCE3EE0725D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59C300A1-280B-4A3A-94C5-0FCE3EE0725D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59C300A1-280B-4A3A-94C5-0FCE3EE0725D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D46748D9-6D96-44B2-AAC4-228372951B74} = {AD5D1B00-BD2F-4AC1-BE0F-CEA0DF03BEDD}
+		{3B6F41BF-ECB5-4B46-B966-3EAB2802F232} = {AD5D1B00-BD2F-4AC1-BE0F-CEA0DF03BEDD}
+		{2A71DB56-C3AF-4F37-92B5-51CE6E2F122E} = {D46748D9-6D96-44B2-AAC4-228372951B74}
+		{59C300A1-280B-4A3A-94C5-0FCE3EE0725D} = {3B6F41BF-ECB5-4B46-B966-3EAB2802F232}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17BD7115-9F21-43F7-BF57-1BBA960A6A02}
+	EndGlobalSection
+EndGlobal
