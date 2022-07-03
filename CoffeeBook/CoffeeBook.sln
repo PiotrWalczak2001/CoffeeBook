@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeBook.Persistence", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeBook.App", "CoffeeBook.App\CoffeeBook.App.csproj", "{59C300A1-280B-4A3A-94C5-0FCE3EE0725D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeBook.Domain", "CoffeeBook.Domain\CoffeeBook.Domain.csproj", "{58779B3A-4802-47FA-AE72-5C4833A0AB03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{59C300A1-280B-4A3A-94C5-0FCE3EE0725D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59C300A1-280B-4A3A-94C5-0FCE3EE0725D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59C300A1-280B-4A3A-94C5-0FCE3EE0725D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58779B3A-4802-47FA-AE72-5C4833A0AB03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58779B3A-4802-47FA-AE72-5C4833A0AB03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58779B3A-4802-47FA-AE72-5C4833A0AB03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58779B3A-4802-47FA-AE72-5C4833A0AB03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 		{3B6F41BF-ECB5-4B46-B966-3EAB2802F232} = {AD5D1B00-BD2F-4AC1-BE0F-CEA0DF03BEDD}
 		{2A71DB56-C3AF-4F37-92B5-51CE6E2F122E} = {D46748D9-6D96-44B2-AAC4-228372951B74}
 		{59C300A1-280B-4A3A-94C5-0FCE3EE0725D} = {3B6F41BF-ECB5-4B46-B966-3EAB2802F232}
+		{58779B3A-4802-47FA-AE72-5C4833A0AB03} = {D46748D9-6D96-44B2-AAC4-228372951B74}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17BD7115-9F21-43F7-BF57-1BBA960A6A02}
