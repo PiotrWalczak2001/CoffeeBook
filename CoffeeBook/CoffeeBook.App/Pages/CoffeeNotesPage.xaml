@@ -1,0 +1,36 @@
+﻿<Page x:Class="CoffeeBook.App.Pages.CoffeeNotesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CoffeeBook.App.Pages"
+      xmlns:controls="clr-namespace:CoffeeBook.App.Controls"
+      xmlns:entities="clr-namespace:CoffeeBook.Domain.Entities;assembly=CoffeeBook.Domain"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="600"
+      Title="CoffeeNotesPage">
+
+    <Grid Height="800" Width="600">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Wszystkie notatki"></TextBlock>
+            <ScrollViewer Height="500" Width="500" Margin="10">
+                <ItemsControl ItemsSource="{Binding Notes}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <controls:CoffeeNote/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <TextBlock Text="Nazwa:"/>
+            <TextBox Text="{Binding NewNoteName, Mode=TwoWay}"/>
+            <TextBlock Text="Opis:"/>
+            <TextBox Height="90" Text="{Binding NewNoteDescription, Mode=TwoWay}"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Dodaj notatke" Command="{Binding AddNewNoteCommand}"></Button>
+                <Button Content="Usuń notatke" Command="{Binding DeleteNotesCommand}"></Button>
+                <Button Content="Dodaj kawe" Click="Button_Open_Coffee_Window"></Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
