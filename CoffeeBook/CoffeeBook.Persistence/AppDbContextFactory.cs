@@ -12,6 +12,7 @@ namespace CoffeeBook.Persistence
             options.UseSqlServer("Server=.;Database=CoffeeBookDb;Trusted_Connection=True;");
 
             _dbContext = new AppDbContext(options.Options);
+            _dbContext.Database.EnsureCreated();
             return _dbContext;
         }
 
