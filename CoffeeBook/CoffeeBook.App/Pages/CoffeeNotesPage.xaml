@@ -4,32 +4,52 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CoffeeBook.App.Pages"
-      xmlns:controls="clr-namespace:CoffeeBook.App.Controls"
       xmlns:entities="clr-namespace:CoffeeBook.Domain.Entities;assembly=CoffeeBook.Domain"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="600"
+      d:DesignHeight="850" d:DesignWidth="600"
       Title="CoffeeNotesPage">
 
-    <Grid Height="800" Width="600">
+    <Grid Height="750" Width="600">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Wszystkie notatki"></TextBlock>
-            <ScrollViewer Height="500" Width="500" Margin="10">
+            <TextBlock FontSize="20" HorizontalAlignment="Center" Text="Wszystkie notatki"></TextBlock>
+            <ScrollViewer Height="400" Width="510" Margin="10">
                 <ItemsControl ItemsSource="{Binding Notes}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <controls:CoffeeNote/>
+                            <Border Background="Beige" BorderBrush="Gainsboro" BorderThickness="1">
+                                <StackPanel Orientation=" Horizontal">
+                                    <CheckBox VerticalAlignment="Center" Margin="5" IsChecked="{Binding IsSelected}"/>
+                                    <StackPanel Width="600">
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Name}"/>
+                                            <TextBlock Text="{Binding BrewingType}" />
+                                            <TextBlock Text="{Binding BrewedDate}" />
+                                        </StackPanel>
+                                        <Button Margin="5" Width="100" HorizontalAlignment="Left" Content="Szczegóły" Tag="{Binding Id}"  Click="Button_Note_Details"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </ScrollViewer>
-            <TextBlock Text="Nazwa:"/>
-            <TextBox Text="{Binding NewNoteName, Mode=TwoWay}"/>
-            <TextBlock Text="Opis:"/>
-            <TextBox Height="90" Text="{Binding NewNoteDescription, Mode=TwoWay}"/>
-            <StackPanel Orientation="Horizontal">
-                <Button Content="Dodaj notatke" Command="{Binding AddNewNoteCommand}"></Button>
-                <Button Content="Usuń notatke" Command="{Binding DeleteNotesCommand}"></Button>
-                <Button Content="Dodaj kawe" Click="Button_Open_Coffee_Window"></Button>
+            <StackPanel Width="300">
+                <TextBlock Text="Nazwa:"/>
+                <TextBox Height="25" Text="{Binding NewNoteName, Mode=TwoWay}"/>
+                <ComboBox Margin="0 10 0 10" Height="25" ItemsSource="{Binding BrewingTypes}" SelectedItem="{Binding SelectedBrewingType, Mode=TwoWay}"/>
+                <ComboBox Height="25" ItemsSource="{Binding Coffees}" SelectedItem="{Binding SelectedCoffee, Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Opis:"/>
+                <TextBox Height="90" TextWrapping="Wrap" Text="{Binding NewNoteDescription, Mode=TwoWay}"/>
+                <StackPanel HorizontalAlignment="Center" Margin="10" Orientation="Horizontal">
+                    <Button Margin="0 0 10 0" Content="Dodaj notatke" Command="{Binding AddNewNoteCommand}"></Button>
+                    <Button Content="Usuń notatke" Command="{Binding DeleteNotesCommand}"></Button>
+                </StackPanel>
             </StackPanel>
         </StackPanel>
     </Grid>

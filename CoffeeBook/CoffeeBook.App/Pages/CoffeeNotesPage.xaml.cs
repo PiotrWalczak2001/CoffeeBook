@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using CoffeeBook.App.Windows;
+﻿using CoffeeBook.Domain.Entities;
 using CoffeeBook.Persistence;
 using CoffeeBook.Persistence.Services;
 using CoffeeBook.Persistence.ViewModels.Pages;
 using System.Windows;
 using System.Windows.Controls;
-using CoffeeBook.Domain.Entities;
+using System.Windows.Navigation;
 
 namespace CoffeeBook.App.Pages
 {
@@ -17,19 +16,21 @@ namespace CoffeeBook.App.Pages
         public CoffeeNotesPage()
         {
             IBaseService<Note> baseService = new BaseService<Note>(new AppDbContextFactory());
+            IBaseService<Coffee> coffeeService = new BaseService<Coffee>(new AppDbContextFactory());
 
-            var viewModel = new CoffeeNotesPageViewModel(baseService);
+            var viewModel = new CoffeeNotesPageViewModel(baseService, coffeeService);
             viewModel.GetAllNotes();
+            viewModel.GetAllCoffees();
             DataContext = viewModel;
             InitializeComponent();
         }
 
-        private void Button_Open_Coffee_Window(object sender, RoutedEventArgs e)
+        private void Button_Note_Details(object sender, RoutedEventArgs e)
         {
-            CoffeeEditWindow coffeEditWindow = new CoffeeEditWindow();
-            
-            coffeEditWindow.Show();
+            var myvalue = ((Button)sender).Tag;
+            CoffeeNoteDetailsPage coffeeNoteDetailsPage = new CoffeeNoteDetailsPage((int)myvalue);
+            NavigationService navigationService = this.NavigationService;
+            navigationService.Navigate(coffeeNoteDetailsPage);
         }
-
     }
 }

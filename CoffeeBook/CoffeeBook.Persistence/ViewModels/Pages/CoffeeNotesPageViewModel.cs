@@ -1,28 +1,70 @@
-﻿using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Input;
-using CoffeeBook.Domain.Entities;
+﻿using CoffeeBook.Domain.Entities;
 using CoffeeBook.Domain.Enums;
 using CoffeeBook.Persistence.Helpers;
 using CoffeeBook.Persistence.Services;
 using CoffeeBook.Persistence.ViewModels.Base;
 using CoffeeBook.Persistence.ViewModels.Controls;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace CoffeeBook.Persistence.ViewModels.Pages
 {
     public class CoffeeNotesPageViewModel : BaseViewModel
     {
         private readonly IBaseService<Note> _noteService;
+        private readonly IBaseService<Coffee> _coffeeService;
         public ObservableCollection<CoffeeNoteViewModel> Notes { get; set; } = new ObservableCollection<CoffeeNoteViewModel>();
+        public ObservableCollection<Coffee> Coffees { get; set; } = new ObservableCollection<Coffee>();
         public string NewNoteName { get; set; }
         public string NewNoteDescription { get; set; }
         public ICommand AddNewNoteCommand { get; set; }
         public ICommand DeleteNotesCommand { get; set; }
 
-        public CoffeeNotesPageViewModel(IBaseService<Note> noteService)
+        private IList<BrewingTypeEnum> _brewingTypes = new List<BrewingTypeEnum>()
+        {
+            BrewingTypeEnum.Drip,
+            BrewingTypeEnum.Chemex,
+            BrewingTypeEnum.FrenchPress,
+            BrewingTypeEnum.AeroPress,
+            BrewingTypeEnum.Syphon,
+            BrewingTypeEnum.Machine,
+            BrewingTypeEnum.NormalSpilling
+        };
+
+        public IEnumerable<BrewingTypeEnum> BrewingTypes
+        {
+            get { return _brewingTypes; }
+            set { }
+        }
+
+        private BrewingTypeEnum _selectedBrewingType;
+
+        public BrewingTypeEnum SelectedBrewingType
+        {
+            get { return _selectedBrewingType; }
+            set
+            {
+                _selectedBrewingType = value;
+                OnPropertyChanged("SelectedBrewingType");
+            }
+        }
+
+        private Coffee _selectedCoffee;
+
+        public Coffee SelectedCoffee
+        {
+            get { return _selectedCoffee; }
+            set
+            {
+                _selectedCoffee = value;
+                OnPropertyChanged("SelectedCoffee");
+            }
+        }
+
+        public CoffeeNotesPageViewModel(IBaseService<Note> noteService, IBaseService<Coffee> coffeeService)
         {
             _noteService = noteService;
+            _coffeeService = coffeeService;
             AddNewNoteCommand = new RelayCommand(AddNote);
             DeleteNotesCommand = new RelayCommand(DeleteSelectedNotes);
         }
@@ -35,29 +77,43 @@ namespace CoffeeBook.Persistence.ViewModels.Pages
                 {
                     Id = note.Id,
                     Name = note.Name,
-                    Description = note.Description,
-                    //
+                    BrewedDate = note.BrewedDate,
+                    BrewingType = note.BrewingTypeEnum
                 });
             }
         }
+        public void GetAllCoffees()
+        {
+            foreach (var coffee in _coffeeService.GetAll())
+            {
+                Coffees.Add(new Coffee()
+                {
+                    Name = coffee.Name,
+                    Id = coffee.Id
+                });
+            }
+        }
+
         public void AddNote()
         {
             var newNote = new Note()
             {
                 Name = NewNoteName,
                 Description = NewNoteDescription,
-                CoffeeId = 1,
+                CoffeeId = SelectedCoffee.Id,
                 BrewedDate = DateTime.Now,
-                BrewingTypeEnum = BrewingTypeEnum.Chemex,
+                BrewingTypeEnum = SelectedBrewingType,
                 BrewingTime = DateTime.Now
             };
+            _noteService.AddEntity(newNote);
             var noteViewModel = new CoffeeNoteViewModel()
             {
+                Id = newNote.Id,
                 Name = NewNoteName,
-                Description = NewNoteDescription,
+                BrewingType = SelectedBrewingType,
+                BrewedDate = newNote.BrewedDate
             };
             Notes.Add(noteViewModel);
-            _noteService.AddEntity(newNote);
 
             NewNoteName = string.Empty;
             NewNoteDescription = string.Empty;

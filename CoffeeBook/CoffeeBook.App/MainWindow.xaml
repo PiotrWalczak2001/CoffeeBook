@@ -8,7 +8,11 @@
         mc:Ignorable="d"
         MinHeight="800"
         MinWidth="600"
+        ResizeMode="NoResize"
         Title="MainWindow" Height="800" Width="600">
 
-    <pages:CoffeeNotesPage />
+    <DockPanel>
+        <Frame x:Name="_mainFrame" />
+    </DockPanel>
+
 </Window>

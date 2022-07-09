@@ -11,7 +11,7 @@ namespace CoffeeBook.Persistence.Services
             _contextFactory = contextFactory;
         }
 
-        public virtual T GetById(Guid id)
+        public virtual T GetById(int id)
         {
             using (AppDbContext context = _contextFactory.CreateDbContext())
             {
